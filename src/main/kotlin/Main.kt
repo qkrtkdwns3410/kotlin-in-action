@@ -1,4 +1,6 @@
-import java.util.*
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.io.Reader
 
 /*
 *
@@ -30,14 +32,28 @@ fun fizzBuzz(i: Int) =
         else -> "$i"
     }
 
+fun isLetter(c: Char) = c in 'a'..'z' || c in 'A'..'Z'
+fun isNotDigit(c: Char) = c !in '0'..'9'
+
+fun recognize(c: Char) =
+    when (c) {
+        in '0'..'9' -> "It's a digit!"
+        in 'a'..'z', in 'A'..'Z' -> "It's a letter!"
+        else -> "I don't know..."
+    }
+
+fun readNumber(reader: BufferedReader): Int?{
+    return try {
+        val line = reader.readLine()
+        println("line = $line");
+        Integer.parseInt(line)
+    } catch (e: NumberFormatException) {
+        null // 예외가 발생하는 경우 null 을 반환한다.
+    } finally {
+        reader.close()
+    }
+}
+
 fun main() {
-    val binaryReps = TreeMap<Char, String>()
-    for (c in 'A'..'F') {
-        val binary = Integer.toBinaryString(c.code)
-        println("binary = $binary ");
-        binaryReps[c] = binary
-    }
-    for (x in 0..<100) {
-    
-    }
+    readNumber(BufferedReader(InputStreamReader(System.`in`)))
 }
