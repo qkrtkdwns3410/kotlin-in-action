@@ -24,7 +24,20 @@ fun saveUser(user: User) {
     // Save user to the database
 }
 
+interface Clickable {
+    fun click()
+    fun showOff() = println("I'm clickable!")
+}
+
+interface Focusable {
+    fun setFocus(b: Boolean) = println("I ${if (b) "got" else "lost"} focus.")
+    fun showOff() = println("I'm focusable!")
+}
+
+class Button : Clickable {
+    override fun click() = println("I was clicked")
+}
+
 fun main() {
-    val user = User(1, "John", 25, "Main St.")
-    saveUser(user)
+    Button().click()
 }
