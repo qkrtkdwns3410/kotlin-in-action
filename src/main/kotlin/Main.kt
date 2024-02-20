@@ -14,7 +14,7 @@ fun User.validateBeforeSave() {
             throw IllegalArgumentException("Can't save user $id: empty $fieldName")
         }
     }
-    
+
     validate(name, "Name")
     validate(address, "Address")
 }
